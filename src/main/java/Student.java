@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Objects;
 
 public class Student {
     private final String name;
@@ -23,6 +24,9 @@ public class Student {
     }
 
     public void setTrainingProgram(TrainingProgram trainingProgram) {
+        if (trainingProgram == null) {
+            throw new NullPointerException("Training program cannot be null");
+        }
         this.trainingProgram = trainingProgram;
     }
 
@@ -37,18 +41,32 @@ public class Student {
 
     public String printDetails() {
         List<Course> listOfCourses = this.getTrainingProgram().getListOfCourses();
-        // TODO: Add formatted courses
-        String formattedCourses = "";
+        StringBuilder formattedCourses = new StringBuilder();
         for (int i = 0; i < listOfCourses.size(); i++) {
-            formattedCourses += i + 1 + ". "
-                    + listOfCourses.get(i).getName() + "\t\t"
-                    + listOfCourses.get(i).getDuration() + "\n";
+            formattedCourses.append(i + 1).append(". ")
+                    .append(listOfCourses.get(i).getName()).append("\t\t")
+                    .append(listOfCourses.get(i).getDuration()).append("\n");
         }
-        return String.format("STUDENT: %s %s\n", this.name, this.surname)
-                + String.format("CURRICULUM: %s\n", this.getTrainingProgram().getCurriculum())
-                + String.format("START_DATE: %s\n", this.getTrainingProgram().getStartDate())
-                + "COURSE \t\t\t DURATION (hrs)\n"
-                + "---------------------------------\n"
-                + formattedCourses;
+        return String.format("STUDENT: %s %s\n", this.name, this.surname) +
+                String.format("CURRICULUM: %s\n", this.getTrainingProgram().getCurriculum()) +
+                String.format("START_DATE: %s\n", this.getTrainingProgram().getStartDate()) +
+                "COURSE \t\t\t DURATION (hrs)\n" +
+                "---------------------------------\n" +
+                formattedCourses.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return Objects.equals(name, student.name) &&
+                Objects.equals(surname, student.surname) &&
+                Objects.equals(trainingProgram, student.trainingProgram);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname, trainingProgram);
     }
 }

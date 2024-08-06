@@ -20,8 +20,8 @@ public class ProgramManager {
 
 }
 //generate and divide into packages
-//remove statics almost everywhere
-//add hashCode and equals() in Student in Trianing prgrm, course
-//make everything that i can private and final
-// if (tempDateTime.getHour() >= 10 && tempDateTime.getHour() < 18) put in constants from report generator
+//remove statics almost everywhere //done
+//add hashCode and equals() in Student in Trianing prgrm, course //done
+//make everything that i can private and final //done
+// if (tempDateTime.getHour() >= 10 && tempDateTime.getHour() < 18) put in constants from report generator //done
 //unit tests, at least one parametrized , one negative that will throw exception

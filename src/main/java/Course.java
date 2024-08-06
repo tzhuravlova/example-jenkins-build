@@ -1,13 +1,17 @@
 import courseenum.CourseName;
 
 import java.util.Random;
+import java.util.Objects;
 
 public class Course {
-    private static Random random = new Random();
+    private static final Random random = new Random();
     private CourseName name;
     private int duration;
 
     public Course(CourseName name, int duration) {
+        if (name == null) {
+            throw new NullPointerException("Course name cannot be null");
+        }
         this.name = name;
         this.duration = duration;
     }

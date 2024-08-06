@@ -3,6 +3,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class ReportGenerator {
+    private static final int START_HOUR = 10;
+    private static final int END_HOUR = 18;
+
     public void generate(List<Student> studentsList) {
         LocalDateTime now = LocalDateTime.now();
         System.out.println(String.format("Short (Generating report date - %s) :", now));
@@ -30,7 +33,7 @@ public class ReportGenerator {
 
         while (tempDateTime.isBefore(currentDate)) {
             if (tempDateTime.getDayOfWeek() != DayOfWeek.SATURDAY && tempDateTime.getDayOfWeek() != DayOfWeek.SUNDAY) {
-                if (tempDateTime.getHour() >= 10 && tempDateTime.getHour() < 18) {
+                if (tempDateTime.getHour() >= START_HOUR && tempDateTime.getHour() < END_HOUR) {
                     remainingHours -= 1;
                 }
             }
